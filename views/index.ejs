@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke API Example</title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Joke API Example</h1>
+        
+        <form action="/submit" method="post">
+            <label for="text">Enter a keyword to find a related joke:</label>
+            <input type="text" id="text" name="text" required>
+            <button type="submit">Get Joke</button>
+        </form>
+
+        <% if (locals.error) { %>
+            <div class="error">
+                <p>
+                    <%= locals.error %>
+                </p>
+            </div>
+            <% } else if (locals.setup && locals.delivery) { %>
+                <div class="joke">
+                    <h2>Random Joke:</h2>
+                    <p>
+                        <%= locals.setup %>
+                            <%= locals.delivery %>
+                    </p>
+                </div>
+                <% } %>
+
+                    <% if (!locals.error && !locals.setup && !locals.delivery && data) { %>
+                        <div class="no-joke">
+                            <p>No joke found for the given keyword.</p>
+                        </div>
+                        <% } %>
+    </div>
+</body>
+
+</html>
